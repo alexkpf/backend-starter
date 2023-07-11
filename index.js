@@ -29,7 +29,7 @@ function error(status, msg) {
 // meaning only paths prefixed with "/api"
 // will cause this middleware to be invoked
 
-app.use('/api', function(req, res, next){
+app.use('/', function(req, res, next){
   var key = req.query['api-key'];
 
   // key isn't present
@@ -74,17 +74,17 @@ var userRepos = {
 // and simply expose the data
 
 // example: http://localhost:3000/api/users/?api-key=foo
-app.get('/api/users', function (req, res) {
+app.get('/users', function (req, res) {
   res.send(users);
 });
 
 // example: http://localhost:3000/api/repos/?api-key=foo
-app.get('/api/repos', function (req, res) {
+app.get('/repos', function (req, res) {
   res.send(repos);
 });
 
 // example: http://localhost:3000/api/user/tobi/repos/?api-key=foo
-app.get('/api/user/:name/repos', function(req, res, next){
+app.get('/user/:name/repos', function(req, res, next){
   var name = req.params.name;
   var user = userRepos[name];
 
